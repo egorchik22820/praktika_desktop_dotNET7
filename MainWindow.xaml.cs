@@ -20,7 +20,27 @@ namespace praktika_desktop_dotNET7
         {
             InitializeComponent();
 
-            MainFrame.Navigate(new Pages.MainPage()); // Передаём Frame в Page
+            MainFrame.Navigate(new Pages.MainPage(MainFrame)); // Передаём Frame в Page
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.MainPage(MainFrame));
+        }
+
+        private void ServicesButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.ServicesPage());
+        }
+
+        private void ContactButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.ContactsPage());
+        }
+
+        private void TextBlock_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Navigate(new Pages.MainPage(MainFrame));
         }
     }
 }

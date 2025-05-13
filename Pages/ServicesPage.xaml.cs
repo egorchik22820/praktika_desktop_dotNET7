@@ -16,25 +16,13 @@ using System.Windows.Shapes;
 namespace praktika_desktop_dotNET7.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для ServicesPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ServicesPage : Page
     {
-        private Frame _mainFrame;
-        public MainPage(Frame frame)
+        public ServicesPage()
         {
             InitializeComponent();
-            _mainFrame = frame;
-        }
-
-        private void ContactButton_Click(object sender, RoutedEventArgs e)
-        {
-            _mainFrame.Navigate(new Pages.ContactsPage());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _mainFrame.Navigate(new Pages.ServicesPage());
         }
     }
 }
