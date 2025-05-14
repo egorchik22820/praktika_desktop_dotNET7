@@ -1,5 +1,8 @@
-﻿using System;
+﻿using praktika_desktop_dotNET7.Models.Entities;
+using RecepiesMODULS.AppData;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,9 +23,35 @@ namespace praktika_desktop_dotNET7.Pages
     /// </summary>
     public partial class ServicesPage : Page
     {
+        public ObservableCollection<Service> services { get; set; }
         public ServicesPage()
         {
             InitializeComponent();
+
+            services = new ObservableCollection<Service>();
+            ServicesListView.ItemsSource = services;
+
+            LoadView();
+        }
+
+        public void LoadView()
+        {
+            services.Clear();
+
+            using (var db = new AppDbContextFactory().CreateDbContext(null))
+            {
+                var allServices = db.Services.ToList();
+
+                foreach (var service in allServices)
+                {
+                    services.Add(service);
+                }
+            }
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
