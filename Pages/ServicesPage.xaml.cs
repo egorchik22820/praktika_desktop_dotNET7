@@ -1,57 +1,57 @@
 ﻿using praktika_desktop_dotNET7.Models.Entities;
 using RecepiesMODULS.AppData;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Microsoft.EntityFrameworkCore;
 
 namespace praktika_desktop_dotNET7.Pages
 {
-    /// <summary>
-    /// Логика взаимодействия для ServicesPage.xaml
-    /// </summary>
     public partial class ServicesPage : Page
     {
-        public ObservableCollection<Service> services { get; set; }
-        public ServicesPage()
+        
+        public ObservableCollection<Service> Services { get; set; }
+        private Frame _mainFrame;
+
+        public ServicesPage(Frame frame)
         {
             InitializeComponent();
-
-            services = new ObservableCollection<Service>();
-            ServicesListView.ItemsSource = services;
-
+            Services = new ObservableCollection<Service>();
+            DataContext = this; // Устанавливаем DataContext
+            _mainFrame = frame;
             LoadView();
         }
 
         public void LoadView()
         {
-            services.Clear();
+            Services.Clear();
 
             using (var db = new AppDbContextFactory().CreateDbContext(null))
             {
-                var allServices = db.Services.ToList();
+                // Важно: загружаем связанные данные
+                var allServices = db.Services
+                    .Include(s => s.ServiceCategory) // Загружаем категорию
+                    .Include(s => s.ServicePhoto)   // Загружаем фото
+                    .ToList();
 
                 foreach (var service in allServices)
                 {
-                    services.Add(service);
+                    Services.Add(service);
                 }
             }
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
+            // Ваша логика входа
+        }
 
+        private void ServicesListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (ServicesListView.SelectedItem is Service selectedService)
+            {
+                _mainFrame.Navigate(new ServiceInfoPage(selectedService));
+            }
         }
     }
 }

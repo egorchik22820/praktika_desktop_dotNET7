@@ -12,6 +12,7 @@ namespace praktika_desktop_dotNET7.Models
     {
         public DbSet<ServiceCategory> ServiceCategories { get; set; }
         public DbSet<Service> Services { get; set; }
+        public DbSet<ServicePhoto> ServicePhotos { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
     }

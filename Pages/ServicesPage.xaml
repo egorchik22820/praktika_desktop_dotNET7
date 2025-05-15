@@ -4,9 +4,19 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:praktika_desktop_dotNET7.Pages"
+      xmlns:converters="clr-namespace:praktika_desktop_dotNET7.Convert"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ServicesPage">
+
+    <Page.Resources>
+        <converters:ByteArrayToImageConverter x:Key="ByteArrayToImageConverter" />
+        <Style TargetType="Image">
+            <Setter Property="RenderOptions.BitmapScalingMode" Value="HighQuality"/>
+            <Setter Property="RenderOptions.EdgeMode" Value="Aliased"/>
+        </Style>
+        
+    </Page.Resources>
 
     <Grid>
         <!--TODO:   Services from database
@@ -21,51 +31,78 @@
 
             <!-- ListView Услуг -->
             <ListView x:Name="ServicesListView"
-              ItemsSource="{Binding Services}"
-              Grid.Column="0"
-              Background="Transparent"
-              BorderThickness="0"
-              Margin="0 0 10 0">
+                      ItemsSource="{Binding Services}"
+                      Grid.Column="0"
+                      Background="Transparent"
+                      MouseDoubleClick="ServicesListView_MouseDoubleClick"
+                      BorderThickness="0"
+                      Margin="0 0 10 0">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0"/>
+                        <Setter Property="Margin" Value="0 0 0 10"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
+
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Border Background="#FFF"
-                        CornerRadius="10"
-                        Margin="0 5"
-                        Padding="10"
-                        BorderBrush="#DDD"
-                        BorderThickness="1">
+                                CornerRadius="10"
+                                Padding="10"
+                                BorderBrush="#DDD"
+                                BorderThickness="1"
+                                Height="120">
                             <DockPanel>
-                                <!-- Картинка -->
-                               <Image Source="/Pages/ImgForPages/cat.jpg/"
-                               Width="100"
-                               Height="100"
-                               Stretch="UniformToFill"
-                               Margin="0 0 10 0"
-                               VerticalAlignment="Top"
-                               ClipToBounds="True">
-                                    <Image.Clip>
-                                        <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,100,100"/>
-                                    </Image.Clip>
-                                </Image>
+                                
+                                <!--картинка-->
+                                <Border Width="160"
+                                        Height="100"
+                                        Margin="0 0 10 0"
+                                        Background="Transparent">
+                                    <Grid>
+
+                                        <!-- Основное изображение с правильными RenderOptions -->
+                                        <!--опять работает через жопу-->
+                                        <Image Source="{Binding ServiceImage}" 
+                                               Stretch="Uniform"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               RenderOptions.BitmapScalingMode="HighQuality"
+                                               RenderOptions.EdgeMode="Aliased">
+                                            <Image.Clip>
+                                                <RectangleGeometry RadiusX="10" RadiusY="10" Rect="0,0,160,100"/>
+                                            </Image.Clip>
+                                        </Image>
+
+                                        <!-- Декоративная рамка -->
+                                        <!--<Border CornerRadius="10"
+                                                BorderBrush="#DDD"
+                                                BorderThickness="1"
+                                                Background="Transparent"/>-->
+                                    </Grid>
+                                </Border>
 
                                 <!-- Текстовая часть -->
-                                <StackPanel>
+                                <StackPanel VerticalAlignment="Center">
                                     <TextBlock Text="{Binding Title}"
-                                       FontSize="18"
-                                       FontWeight="Bold"
-                                       Foreground="#333"/>
+                                   FontSize="18"
+                                   FontWeight="Bold"
+                                   Foreground="#333"
+                                   TextTrimming="CharacterEllipsis"/>
 
                                     <TextBlock Text="{Binding ServiceCategory.Title}"
-                                       FontSize="14"
-                                       Foreground="#666"
-                                       Margin="0,4,0,0"/>
+                                   FontSize="14"
+                                   Foreground="#666"
+                                   Margin="0,4,0,0"/>
 
                                     <TextBlock Text="{Binding DescriptionShort}"
-                                       FontSize="13"
-                                       Foreground="#555"
-                                       TextWrapping="Wrap"
-                                       Margin="0,6,0,0"
-                                       MaxHeight="60"/>
+                                   FontSize="13"
+                                   Foreground="#555"
+                                   TextWrapping="Wrap"
+                                   Margin="0,6,0,0"
+                                   MaxHeight="40"
+                                   TextTrimming="CharacterEllipsis"/>
                                 </StackPanel>
                             </DockPanel>
                         </Border>

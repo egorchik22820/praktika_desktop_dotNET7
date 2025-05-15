@@ -1,4 +1,5 @@
-﻿using System;
+﻿using praktika_desktop_dotNET7.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,25 +17,21 @@ using System.Windows.Shapes;
 namespace praktika_desktop_dotNET7.Pages
 {
     /// <summary>
-    /// Логика взаимодействия для MainPage.xaml
+    /// Логика взаимодействия для ServiceInfoPage.xaml
     /// </summary>
-    public partial class MainPage : Page
+    public partial class ServiceInfoPage : Page
     {
-        private Frame _mainFrame;
-        public MainPage(Frame frame)
+        public Service CurrentService { get; set; }
+        public ServiceInfoPage(Service service)
         {
             InitializeComponent();
-            _mainFrame = frame;
+            CurrentService = service;
+            DataContext = CurrentService;
         }
 
-        private void ContactButton_Click(object sender, RoutedEventArgs e)
+        private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            _mainFrame.Navigate(new Pages.ContactsPage());
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            _mainFrame.Navigate(new Pages.ServicesPage(_mainFrame));
+            NavigationService?.GoBack();
         }
     }
 }

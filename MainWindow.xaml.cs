@@ -30,7 +30,7 @@ namespace praktika_desktop_dotNET7
 
         private void ServicesButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Navigate(new Pages.ServicesPage());
+            MainFrame.Navigate(new Pages.ServicesPage(MainFrame));
         }
 
         private void ContactButton_Click(object sender, RoutedEventArgs e)
