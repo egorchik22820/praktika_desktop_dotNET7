@@ -1,6 +1,7 @@
 ﻿using praktika_desktop_dotNET7.Models.Enums;
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Windows.Media.Imaging;
 
@@ -23,6 +24,7 @@ namespace praktika_desktop_dotNET7.Models.Entities
 
         public string PhotoUrl => $"https://localhost:7088/img/{Photo}";
 
+        [NotMapped]
         public BitmapImage? ServiceImage
         {
             get
@@ -44,6 +46,7 @@ namespace praktika_desktop_dotNET7.Models.Entities
                 // Если фото нет, возвращаем null
                 return null;
             }
+            set { }
         }
 
         [Display(Name = "Тип услуги")]

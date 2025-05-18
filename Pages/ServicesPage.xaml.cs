@@ -28,10 +28,10 @@ namespace praktika_desktop_dotNET7.Pages
 
             using (var db = new AppDbContextFactory().CreateDbContext(null))
             {
-                // Важно: загружаем связанные данные
                 var allServices = db.Services
-                    .Include(s => s.ServiceCategory) // Загружаем категорию
-                    .Include(s => s.ServicePhoto)   // Загружаем фото
+                    .Include(s => s.ServiceCategory)
+                    .Include(s => s.ServicePhoto)
+                    .AsNoTracking() // Важно: не отслеживаем изменения
                     .ToList();
 
                 foreach (var service in allServices)
@@ -43,7 +43,7 @@ namespace praktika_desktop_dotNET7.Pages
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
         {
-            // Ваша логика входа
+            _mainFrame.Navigate(new Admin.LoginPage(_mainFrame));
         }
 
         private void ServicesListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)

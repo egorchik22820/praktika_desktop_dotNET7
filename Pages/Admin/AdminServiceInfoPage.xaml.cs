@@ -14,15 +14,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace praktika_desktop_dotNET7.Pages
+namespace praktika_desktop_dotNET7.Pages.Admin
 {
     /// <summary>
-    /// Логика взаимодействия для ServiceInfoPage.xaml
+    /// Логика взаимодействия для AdminServiceInfoPage.xaml
     /// </summary>
-    public partial class ServiceInfoPage : Page
+    public partial class AdminServiceInfoPage : Page
     {
         public Service CurrentService { get; set; }
-        public ServiceInfoPage(Service service)
+        public AdminServiceInfoPage(Service service)
         {
             InitializeComponent();
 
