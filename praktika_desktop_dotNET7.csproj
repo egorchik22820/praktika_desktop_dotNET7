@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Pages\ImgForPages\1662550786_2-kartinkof-club-p-novie-i-krasivie-kartinki-stroika-2.jpg" />
     <None Remove="Pages\ImgForPages\cat.jpg" />
+    <None Remove="tower-crane_2251424.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -30,9 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Pages\ImgForPages\1662550786_2-kartinkof-club-p-novie-i-krasivie-kartinki-stroika-2.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pages\ImgForPages\cat.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="tower-crane_2251424.png" />
   </ItemGroup>
 
 </Project>

@@ -60,8 +60,12 @@
             <Border Background="#F5F5F5" Padding="20" Grid.Column="0">
                 <StackPanel>
                     <TextBlock Text="Добро пожаловать!" FontSize="18" FontWeight="Bold" Margin="0 0 0 10" Foreground="#444"/>
-                    <TextBlock Text="Узнайте больше о наших услугах и предложениях прямо сейчас." 
-                               FontSize="14" Foreground="#666" TextWrapping="Wrap" Margin="0 0 0 20"/>
+                    <TextBlock Text="Наша компания живет за счет доверия к нам!
+                                        Наша история в России даже больше,
+                                        чем история эльфов в Средиземье.
+                                        Поэтому за качество отвечаем своими острыми ушами.
+                                        Только не просите их показать." 
+                               FontSize="12" Foreground="#666" TextWrapping="Wrap" Margin="0 0 0 20"/>
                     <Button Content="Перейти к услугам" 
                             Background="#3A84F4" 
                             Foreground="White"

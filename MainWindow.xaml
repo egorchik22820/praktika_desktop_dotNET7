@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:praktika_desktop_dotNET7"
         mc:Ignorable="d"
-        Title="Монолит" Height="600" Width="900">
+        Title="Монолит" Height="600" Width="900" Icon="/tower-crane_2251424.png" ResizeMode="NoResize">
 
     <!-- Переносим стили в Window.Resources -->
     <Window.Resources>
